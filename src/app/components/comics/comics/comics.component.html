@@ -1,0 +1,16 @@
+<div fxLayout="column">
+    <div fxLayout="row wrap">
+        <div fxFlex="25" fxFlex.md="33" fxFle.sm="50"
+        fxFlex.xs="100" fxLayout="column" class="div-img"
+        *ngFor="let comic of comicList">
+
+        <mat-card>
+            <img mat-card-image src={{comic.thumbnail.path}}.{{comic.thumbnail.extension}}
+            alt="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}">
+            <mat-card-title>
+                {{ comic.title }}
+            </mat-card-title>
+        </mat-card>
+        </div>
+    </div>
+</div>
