@@ -10,15 +10,22 @@ import { CharactersService } from 'src/app/services/characters/characters.servic
 })
 export class CharactersComponent implements OnInit {
   
-  characterList: Character[] = [];
+  public characterList: Character[] = [];
+  private errorMessage = "";
 
   constructor(private characterService: CharactersService) { }
 
   /*chamando com modelagem */
   ngOnInit(): void {
     this.characterService.getAllCharacters()
-    .subscribe((response:any) => {
+    .subscribe(
+      (response:any) => {
       this.characterList = response;
+    },
+    (error) => {
+      console.error('Erro ao listar personagens!')
+      this.errorMessage = error;
+      console.log(this.errorMessage);
     });
   }
 }

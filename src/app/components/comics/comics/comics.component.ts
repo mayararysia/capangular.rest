@@ -10,14 +10,24 @@ import { Observable } from 'rxjs';
 })
 export class ComicsComponent implements OnInit {
 
-  comicList: Comic[] = [];
+  public comicList: Comic[] = [];
+  public date = new Date();
+  public quantityToList: number = 0;
+  private errorMessage = "";
 
   constructor(private comicService: ComicsService) { }
 
   ngOnInit(): void {
     this.comicService.getAllComics()
-    .subscribe((response:any) => {
+    .subscribe(
+      (response:any) => {
       this.comicList = response;
+      this.quantityToList = this.comicList.length/2;
+    },
+    (error) => {
+      console.log("Erro ao listar comics!");
+      this.errorMessage = error;
+      console.log(this.errorMessage);
     });
   }
 

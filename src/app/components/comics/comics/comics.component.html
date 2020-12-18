@@ -2,13 +2,16 @@
     <div fxLayout="row wrap">
         <div fxFlex="25" fxFlex.md="33" fxFle.sm="50"
         fxFlex.xs="100" fxLayout="column" class="div-img"
-        *ngFor="let comic of comicList">
+        *ngFor="let comic of comicList | slice:2:quantityToList">
 
         <mat-card>
             <img mat-card-image src={{comic.thumbnail.path}}.{{comic.thumbnail.extension}}
             alt="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}">
             <mat-card-title>
                 {{ comic.title }}
+                <mat-chip fxFlex="25" selected="true" fxLayoutAlign="center center">
+                    <span style="font-size:0.7rem;">{{date | localDateTimePipe}}</span>
+                </mat-chip>
             </mat-card-title>
         </mat-card>
         </div>
